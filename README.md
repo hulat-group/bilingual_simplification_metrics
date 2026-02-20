@@ -66,7 +66,7 @@ bilingual_simplification_metrics/
 ## 🔧 Installation
 - Clone the repository
 ```text
-  git clone https://github.com/<your-username>/bilingual_simplification_metrics.git
+  git clone https://github.com/hulat-group/bilingual_simplification_metrics.git
   cd bilingual_simplification_metrics
 ```
 - Create virtual environment
