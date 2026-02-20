@@ -1,9 +1,7 @@
 # 🌍 Bilingual Simplification Metrics  
 ### 🧠 A Unified Evaluation Framework for Text Simplification (ES/EN)
 
-Robust and reproducible framework for the automatic evaluation of **text simplification systems** in Spanish and English.
-
-This repository integrates structural simplification metrics, semantic similarity measures, factual consistency evaluation, readability analysis, and environmental impact tracking into a single unified pipeline.
+This repository integrates structural simplification metrics, semantic similarity, factual consistency evaluation, readability, and environmental impact tracking into a single unified pipeline.
 
 ---
 
@@ -11,14 +9,12 @@ This repository integrates structural simplification metrics, semantic similarit
 
 🔹 **Bilingual support** (Spanish 🇪🇸 / English 🇬🇧)  
 🔹 Structured evaluation across multiple models  
-🔹 JSON + CSV export (publication-ready)  
-🔹 CodeCarbon integration (sustainability tracking)  
-🔹 Modular metric design  
+🔹 JSON + CSV export   
+🔹 CodeCarbon integration 
 
 ---
 
 # 📊 Implemented Metrics
-
 ## 🪄 Simplification Quality
 - **SARI** (ADD / KEEP / DELETE)
 
@@ -50,10 +46,15 @@ bilingual_simplification_metrics/
 │
 ├── metricas_hub.py              # 🚀 Main evaluation script
 │
+├── datasets/
+├── Conjunto_Simplificaciones/             
+│
 ├── AlignScore_v2_es/            # AlignScore implementation
 ├── QuestEval/                   # QuestEval implementation
 ├── moverscore/                  # MoverScore implementation
 ├── summac/                      # SummaC implementation
+│
+├── outputs/
 │
 ├── README.md            
 ├── LICENSE
