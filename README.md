@@ -81,9 +81,8 @@ bilingual_simplification_metrics/
 ```
 
 ## ⚠️ Important Notes
-- **English AlignScore requires checkpoint (English):**
-Manual download:
-
+**English AlignScore requires checkpoint (English)**
+- Manual download
 1. Download from:
    https://huggingface.co/<your-username>/alignscore-base-checkpoint
 
