@@ -80,6 +80,17 @@ bilingual_simplification_metrics/
   pip install -r requirements.txt
 ```
 
+## ⚠️ Important Notes
+- **English AlignScore requires checkpoint (English):**
+Manual download:
+
+1. Download from:
+   https://huggingface.co/<your-username>/alignscore-base-checkpoint
+
+2. Place the file at:
+
+AlignScore_v2_es/checkpoint/checkpoints/AlignScore-base.ckpt
+  
 ## 📂 Expected Data Structure
 The evaluation pipeline assumes the following external directory structure.
 - **Spanish**
