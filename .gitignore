@@ -1,0 +1,47 @@
+# ==============================
+# Model weights / checkpoints
+# ==============================
+*.ckpt
+*.pt
+*.bin
+*.safetensors
+**/checkpoint/
+**/checkpoints_*/
+**/checkpoints_alignscore_*/
+
+# ==============================
+# Training datasets (si no quieres subirlos)
+# ==============================
+AlignScore_v2_es/datasets/
+
+# ==============================
+# Logs
+# ==============================
+**/logs/
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# ==============================
+# OS
+# ==============================
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Virtual environments
+# ==============================
+.venv/
+venv/
+metricas_venv/
+
+# ==============================
+# Cache
+# ==============================
+.cache/
