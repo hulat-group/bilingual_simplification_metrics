@@ -15,24 +15,41 @@ This repository integrates structural simplification metrics, semantic similarit
 ---
 
 # 📊 Implemented Metrics
-## 🪄 Simplification Quality
-- **SARI** (ADD / KEEP / DELETE)
+The repository provides a unified evaluation pipeline. However, some metrics internally depend on **different models depending on the language**, configured through `LANG_CFG` inside `metricas_hub.py`.
 
-## 🔁 Semantic Similarity
-- **BERTScore**
-- **MoverScore**
-- **Semantic Answer Similarity (SAS)**
-- **BLEU**
-- **ROUGE**
+---
 
-## 🧠 Factual Consistency
-- **AlignScore**
-- **SummaC** (ZS + Conv)
-- **QuestEval**
+## 🧪 Metric–Model Configuration by Language
 
-## 📚 Readability
-- Spanish → **Fernández-Huerta**
-- English → **Flesch Reading Ease**
+| Category | Metric | Spanish (ES) | English (EN) |
+|-----------|--------|--------------|--------------|
+| 🪄 Simplification | **SARI** | Rule-based implementation | Rule-based implementation |
+| 🔁 Semantic Similarity | **BERTScore** | `PlanTL-GOB-ES/roberta-base-biomedical-clinical-es` | `roberta-large` |
+| 🔁 Semantic Similarity | **MoverScore** | `PlanTL-GOB-ES/roberta-base-biomedical-clinical-es` | `roberta-large` |
+| 🔁 Semantic Similarity | **SAS** | `sentence-transformers/paraphrase-multilingual-mpnet-base-v2` | Same multilingual model |
+| 🔁 Semantic Similarity | **BLEU** | `evaluate`  | `evaluate`  |
+| 🔁 Semantic Similarity | **ROUGE** | `rouge`  | `rouge`  |
+| 🧠 Factual Consistency | **AlignScore** | `PlanTL-GOB-ES/roberta-base-biomedical-clinical-es` | `roberta-base` + AlignScore checkpoint |
+| 🧠 Factual Consistency | **SummaC** | `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli` | `tals/albert-xlarge-vitaminc-mnli` |
+| 🧠 Factual Consistency | **QuestEval** | English QA/QG models | English QA/QG models |
+| 📚 Readability | Readability Index | Fernández-Huerta | Flesch Reading Ease |
+
+---
+
+## 🔎 Important Clarification
+
+Although the framework is described as *bilingual*, this refers to:
+
+> A **single unified evaluation pipeline** supporting multiple languages through language-specific model configurations.
+
+All model selection logic is defined in:
+
+```python
+LANG_CFG = {
+    "es": {...},
+    "en": {...}
+}
+```
 
 ## 🌱 Environmental Impact
 - **CodeCarbon** (offline emissions tracking)
