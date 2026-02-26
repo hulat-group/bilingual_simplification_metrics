@@ -397,7 +397,7 @@ def SAS(simplified, references, st_model): #ENCODE PARA CADA REFERENCIA
     """
     emb_simplified = st_model.encode([simplified], convert_to_tensor=True)
     emb_references = st_model.encode([references], convert_to_tensor=True)
-    return util.cos_sim(emb_simplified, emb_references).item() #un array con sas score por referencia
+    return util.cos_sim(emb_simplified, emb_references).item() 
 
 # ------------------------
 # ------ AlignScore ------
