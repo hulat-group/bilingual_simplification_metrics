@@ -101,7 +101,7 @@ bilingual_simplification_metrics/
 **English AlignScore requires checkpoint (English)**
 - Manual download
 1. Download from:
-   https://huggingface.co/<your-username>/alignscore-base-checkpoint
+   https://huggingface.co/MASE98/alignscore-base-checkpoint/tree/main
 
 2. Place the file at:
 
@@ -112,20 +112,21 @@ The evaluation pipeline assumes the following external directory structure.
 - **Spanish**
 ```text
 datasets/es/
-├── originales_txt_test/
-└── adaptaciones_txt_test/
-    ├── FundacionAmas/
-    ├── OscarGarciaMunoz/
-    └── PlenaInclusionMadrid/
+├── originals_txt_test/
+└── references_txt_test/
+    ├── reference_1/
+    ├── reference_2/
+    └── .../
+
 ```
 - **English**
 ```text
 datasets/en/
-├── originales_txt_test/
+├── originals_txt_test/
 └── references_txt_test/
-    ├── FundacionAmas/
-    ├── OscarGarciaMunoz/
-    └── PlenaInclusionMadrid/
+    ├── reference_1/
+    ├── reference_2/
+    └── .../
 ```
 
 ## 🤖 Model-Generated Simplifications
