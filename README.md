@@ -108,8 +108,8 @@ bilingual_simplification_metrics/
 AlignScore_v2_es/checkpoint/checkpoints/AlignScore-base.ckpt
   
 ## 📂 Expected Data Structure
-The evaluation pipeline assumes the following external directory structure.
-- **Spanish**
+The evaluation pipeline assumes the following external directory structure. The original directory and references are expected to have files.
+- **Spanish**/**English**
 ```text
 datasets/
 ├── es/
