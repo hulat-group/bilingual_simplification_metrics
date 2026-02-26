@@ -111,22 +111,20 @@ AlignScore_v2_es/checkpoint/checkpoints/AlignScore-base.ckpt
 The evaluation pipeline assumes the following external directory structure.
 - **Spanish**
 ```text
-datasets/es/
-├── originals_txt_test/
-└── references_txt_test/
-    ├── reference_1/
-    ├── reference_2/
-    └── .../
+datasets/
+├── es/
+│   ├── originals_txt_test/
+│   └── references_txt_test/
+│       ├── reference_1/
+│       ├── reference_2/
+│       └── ...
+└── en/
+    ├── originals_txt_test/
+    └── references_txt_test/
+        ├── reference_1/
+        ├── reference_2/
+        └── .../
 
-```
-- **English**
-```text
-datasets/en/
-├── originals_txt_test/
-└── references_txt_test/
-    ├── reference_1/
-    ├── reference_2/
-    └── .../
 ```
 
 ## 🤖 Model-Generated Simplifications
