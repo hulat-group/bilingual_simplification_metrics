@@ -107,7 +107,7 @@ def read_file_text(filepath):
     else:
         raise ValueError(f"Tipo de archivo no soportado: {filepath}")
 
-def match_documents(doc_folder_original, doc_folder_simplified, doc_folder_references1, doc_folder_references2, doc_folder_references3,n_refs=None):
+def match_documents(doc_folder_original, doc_folder_simplified, doc_folder_references1, doc_folder_references2, doc_folder_references3, n_refs=None):
     """
     Encuentra documentos base y sus tres referencias en carpetas separadas.
     
@@ -391,7 +391,7 @@ def calculate_sari(source, prediction, references):
 # --------------------------------------------------------------------
 # ------ Semantic_Answer_Similarity (SAS sentence-transformers) ------
 # --------------------------------------------------------------------
-def SAS(simplified, references, st_model): #ENCODE PARA CADA REFERENCIA SEPARADAMENTE, 
+def SAS(simplified, references, st_model): #ENCODE PARA CADA REFERENCIA 
     """
     Devuelve un único SAS (cosine similarity) entre el texto simplificado y una referencia.
     """
@@ -442,7 +442,7 @@ def calculate_moverscore(simplified, references, idf_dict_ref, idf_dict_hyp, cfg
 
         scores = word_mover_score(
             references,                      # lista de referencias
-            [simplified] * len(references), # misma hipótesis repetida
+            [simplified] * len(references),  # hipótesis repetida
             idf_dict_ref,
             idf_dict_hyp,
             n_gram=1,
@@ -560,7 +560,6 @@ def evaluate_pair(name, path_original, path_simplified, path_references, st_mode
     references_text = [read_file_text(p) for p in path_references]
 
     # ====== REFERENCIAS ======
-    #reference_ids = [f"{name}_FA", f"{name}_OGM", f"{name}_PIM"]
     reference_ids = [Path(p).stem for p in path_references]
 
     # ====== MÉTRICAS POR REFERENCIA ======
@@ -633,7 +632,6 @@ def evaluate_pair(name, path_original, path_simplified, path_references, st_mode
             print("------------------------------------------------\n")
             raise e  # Re-lanzar para detener ejecución
 
-
         # guardar resultados
         rouge_vals["rouge-1_f1"].append(round(r["rouge-1"]["rouge-1_f1"][0], 4))
         rouge_vals["rouge-1_precision"].append(round(r["rouge-1"]["rouge-1_precision"][0], 4))
@@ -664,10 +662,10 @@ def evaluate_pair(name, path_original, path_simplified, path_references, st_mode
     readability_refs = [calculate_readability(r, cfg) for r in references_text]
     readability_simplified = calculate_readability(simplified, cfg)
 
-    # ===========================
-    #      JSON COMPLETO
-    # ===========================
-
+    # =============
+    #      JSON 
+    # =============
+    
     result = {
         "id_original_text": name,
         "original_text": original,
@@ -798,7 +796,7 @@ def parse_args():
     parser.add_argument("--lang", choices=["es", "en"], required=True,
                         help="Idioma de evaluación: es | en")
     parser.add_argument("--data_root", required=True,
-                        help="Raíz del dataset (contiene originales_txt_test/ y adaptaciones_txt_test/)")
+                        help="Raíz del dataset (contiene originals_txt_test/ y references_txt_test/)")
     parser.add_argument("--simpl_root", required=True,
                         help="Raíz de simplificaciones (contiene subcarpetas por modelo)")
     parser.add_argument("--out", required=True,
@@ -814,20 +812,20 @@ if __name__ == "__main__":
     cfg = LANG_CFG[args.lang]
 
     data_root = Path(args.data_root)
-    DOC_FOLDER_ORIGINAL = str(data_root / "originales_txt_test")
+    DOC_FOLDER_ORIGINAL = str(data_root / "")
 
-    # Referencias: en español se usan las adaptaciones, en inglés las referencias originales
+    # Referencias: en español/ingles, el nombre de reference_x, como generico
     if args.lang == "es":
         ref_dirs = [
-            data_root / "adaptaciones_txt_test" / "FundacionAmas",
-            data_root / "adaptaciones_txt_test" / "OscarGarciaMunoz",
-            data_root / "adaptaciones_txt_test" / "PlenaInclusionMadrid",
+            data_root / "references_txt_test" / "reference_1",
+            data_root / "references_txt_test" / "reference_2",
+            data_root / "references_txt_test" / "reference_3",
         ]
     else:
         ref_dirs = [
-            data_root / "references_txt_test" / "FundacionAmas",
-            data_root / "references_txt_test" / "OscarGarciaMunoz",
-            data_root / "references_txt_test" / "PlenaInclusionMadrid",
+            data_root / "references_txt_test" / "reference_1",
+            data_root / "references_txt_test" / "reference_1",
+            data_root / "references_txt_test" / "reference_1",
         ]
     DOC_FOLDER_REFERENCES1 = str(ref_dirs[0])
     DOC_FOLDER_REFERENCES2 = str(ref_dirs[1])
@@ -840,11 +838,8 @@ if __name__ == "__main__":
     align_scorer = init_alignscore(cfg, device="cuda:0", batch_size=32)
    
     # -----------------------------
-    # Normalizar raíz de simplificaciones:
+    # Normalizacion de raíz de simplificaciones:
     # --simpl_root puede ser .../Conjunto_Simplificaciones
-    # o .../Conjunto_Simplificaciones/es
-    # o .../Conjunto_Simplificaciones/en
-    # Si el usuario pasa la raíz que contiene "es/" y "en/", bajamos al idioma
     # -----------------------------
 
     simpl_root = Path(args.simpl_root)
@@ -903,7 +898,6 @@ if __name__ == "__main__":
 
                 # Se emparejan los documentos originales, simplificados y referencias
                 n_refs = 3
-                #n_refs = 3 if args.lang in ["es", "en"] else 1
                 doc_pairs = match_documents(DOC_FOLDER_ORIGINAL, DOC_FOLDER_SIMPLIFIED, DOC_FOLDER_REFERENCES1, DOC_FOLDER_REFERENCES2, DOC_FOLDER_REFERENCES3, n_refs=n_refs)
                
                 print(f"Pares encontrados: {len(doc_pairs)}")
