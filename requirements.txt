@@ -1,0 +1,22 @@
+numpy
+nltk
+textstat
+pyphen
+pandas
+torch
+transformers
+scikit-learn
+sentence-transformers
+evaluate
+python-docx
+bleu
+bert-score
+rouge
+spacy
+pytorch-lightning
+pyemd
+codecarbon
+
+
+-e ./summac
+-e ./QuestEval
