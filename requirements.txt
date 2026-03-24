@@ -1,21 +1,22 @@
-numpy
-nltk
-textstat
-pyphen
-pandas
-torch
-transformers
-scikit-learn
-sentence-transformers
-evaluate
-python-docx
-bleu
-bert-score
-rouge
-spacy
-pytorch-lightning
-pyemd
-codecarbon
+accelerate==1.11.0
+bert-score==0.3.13
+bleu==0.3
+codecarbon==3.2.3
+evaluate==0.4.6
+numpy==1.26.4
+nltk==3.9.1
+pandas==2.3.1
+python-docx==1.2.0
+pyphen==0.17.2
+pytorch-lightning==2.5.2
+pyemd==0.5.1
+rouge==1.0.1
+scikit-learn==1.7.1
+sentence-transformers==5.1.2
+spacy==3.8.4
+textstat==0.7.13
+torch==2.6.0
+transformers==4.50.3
 
 
 -e ./summac
