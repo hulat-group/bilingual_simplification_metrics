@@ -103,9 +103,9 @@ bilingual_simplification_metrics/
 **English AlignScore requires checkpoint (English)**
 - Manual download
 1. Download from:
-   https://huggingface.co/MASE98/alignscore-base-checkpoint/tree/main
+   https://huggingface.co/hulat-group/alignscore-base-checkpoint/tree/main
 
-2. Place the file at:
+3. Place the file at:
 
 AlignScore_v2_es/checkpoint/checkpoints/AlignScore-base.ckpt
   
